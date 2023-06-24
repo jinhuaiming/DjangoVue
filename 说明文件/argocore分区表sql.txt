@@ -1,0 +1,18 @@
+CREATE TABLE workspace.argocore
+(
+    platformnumber integer NOT NULL,
+    cyclenumber integer NOT NULL,
+    pressure numeric(7, 1) NOT NULL,
+    cpressure numeric(7, 1),
+    qpressure character varying(1),
+    temperature numeric(9, 3),
+    ctemperature numeric(9, 3),
+    qtemperature character varying(1),
+    salinity numeric(9, 3),
+    csalinity numeric(9, 3),
+    qsalinity character varying(1),
+    PRIMARY KEY (platformnumber, cyclenumber, pressure)
+) PARTITION BY LIST (platformnumber);
+
+ALTER TABLE IF EXISTS workspace.argocore
+    OWNER to postgres;
